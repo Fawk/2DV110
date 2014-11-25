@@ -15,7 +15,18 @@ public class MemoryTests {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testTooLargeMemorySize() throws IllegalArgumentException {
-		new Memory(11);
+		new Memory(12);
+	}
+	
+	@Test
+	public void testOddMemorySize() {
+		boolean re = false;
+		try {
+			new Memory(7);
+		} catch (IllegalArgumentException e) {
+			re = true;
+		}
+		assert(re);
 	}
 	
 	@Test

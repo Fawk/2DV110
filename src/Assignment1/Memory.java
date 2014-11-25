@@ -16,7 +16,6 @@ public class Memory {
 		for(int i = 0; i < pairs * 2; i++) {
 			slots[i] = new MemorySlot(generateValue(pairs));
 		}
-		System.out.println();
 	}
 
 	private char generateValue(int pairs) {
@@ -26,7 +25,6 @@ public class Memory {
 		while(isTakenTwice(values[n])) {
 			n = rand.nextInt(pairs);
 		}
-		System.out.println(values[n]);
 		return values[n];
 	}
 
