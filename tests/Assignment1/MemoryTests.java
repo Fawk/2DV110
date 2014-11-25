@@ -22,8 +22,8 @@ public class MemoryTests {
 	public void testMemorySize() {
 		Memory m = new Memory(5);
 		
-		assertEquals(m.getPairs(), 5);
-		assertEquals(m.getSlots(), 10);
+		assertEquals(5, m.getPairs());
+		assertEquals(10, m.getSlots());
 	}
 	
 	@Test
@@ -34,10 +34,14 @@ public class MemoryTests {
 		
 		m.SetFakeOrder(c);
 		
-		for(int i = 0; i < 5; i++) {
+		for(int i = 0; i < 10; i++) {
 			MemorySlot mockedSlot = mock(MemorySlot.class);
-			when(mockedSlot.getValue()).thenReturn(c[i]);
-			MemorySlot realSlot = m.getSlot(0);
+			if(i >= c.length) {
+				when(mockedSlot.getValue()).thenReturn(c[i - (c.length)]);
+			} else {
+				when(mockedSlot.getValue()).thenReturn(c[i]);
+			}
+			MemorySlot realSlot = m.getSlot(i);
 			assert(m.sameSlotValue(mockedSlot, realSlot));
 		}
 	}
