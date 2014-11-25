@@ -41,24 +41,28 @@ public class MemoryTests {
 			} else {
 				when(mockedSlot.getValue()).thenReturn(c[i]);
 			}
-			MemorySlot realSlot = m.getSlot(i);
+			MemorySlot realSlot = m.getMemorySlot(i);
 			boolean result = m.sameSlotValue(mockedSlot, realSlot);
-			assert(result);
+			assertTrue(result);
 		}
 	}
 	
 	@Test
 	public void testPickedSlot() {
 		Memory m = new Memory(5);
-		assert(turnSlot(m, 0));
-		assert(!turnSlot(m, 0));
+		boolean r1 = turnSlot(m, 0);
+		assertTrue(r1);
+		boolean r2 = turnSlot(m, 0);
+		assertTrue(!r2);
 	}
 	
 	@Test
 	public void testTurnSlot() {
 		Memory m = new Memory(5);
-		assert(turnSlot(m, 0));
-		assert(turnSlot(m, 1));
+		boolean r1 = turnSlot(m, 0);
+		assertTrue(r1);
+		boolean r2 = turnSlot(m, 1);
+		assertTrue(r2);
 	}
 	
 	@Test

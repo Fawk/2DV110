@@ -6,6 +6,8 @@ public class Memory {
 	
 	private char[] values = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
 	private MemorySlot[] slots;
+	private MemorySlot turned;
+	private int tries = 0;
 
 	public Memory(int pairs) {
 		if(pairs < 1 || pairs > 10) {
@@ -14,7 +16,7 @@ public class Memory {
 		
 		slots = new MemorySlot[pairs*2];
 		for(int i = 0; i < pairs * 2; i++) {
-			slots[i] = new MemorySlot(generateValue(pairs));
+			slots[i] = new MemorySlot(generateValue(pairs), i);
 		}
 	}
 
@@ -52,9 +54,9 @@ public class Memory {
 		slots = new MemorySlot[c.length*2];
 		for(int i = 0; i < slots.length; i++) {
 			if(i >= (slots.length / 2)) {
-				slots[i] = new MemorySlot(c[i - (slots.length/2)]);
+				slots[i] = new MemorySlot(c[i - (slots.length/2)], i);
 			} else {
-				slots[i] = new MemorySlot(c[i]);
+				slots[i] = new MemorySlot(c[i], i);
 			}
 		}
 	}
@@ -64,7 +66,53 @@ public class Memory {
 		return (s1.getValue() == s2.getValue());
 	}
 
-	public MemorySlot getSlot(int i) {
+	public MemorySlot getMemorySlot(int i) {
 		return slots[i];
+	}
+
+	public boolean turnSlot(int slot) {
+		if(turned == null) {
+			turned = getMemorySlot(slot);
+			return true;
+		}
+		
+		if(turned.getSlot() == slot)
+			return false;
+		
+		if(!getMemorySlot(slot).isActive())
+			return false;
+		
+		if(turned.getValue() == getMemorySlot(slot).getValue()) {
+			
+			slots[slot].setActive(false);
+			slots[turned.getSlot()].setActive(false);
+			
+			turned = null;
+			tries++;
+			return true;
+		} else {
+			turned = null;
+			tries++;
+			return true;
+		}
+	}
+
+	public int TestGame() {
+		
+		while(!Won()) {
+			Random rand = new Random();
+			turnSlot(rand.nextInt(getSlots()));
+		}
+		
+		return tries;
+	}
+
+	private boolean Won() {
+		int r = 0;
+		for(int i = 0; i < getSlots(); i++) {
+			if(!getMemorySlot(i).isActive())
+				r++;
+		}
+		return r == getSlots();
 	}
 }
