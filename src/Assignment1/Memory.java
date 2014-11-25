@@ -8,7 +8,7 @@ public class Memory {
 	private MemorySlot[] slots;
 
 	public Memory(int pairs) {
-		if(pairs < 2 || pairs > 10 || (pairs % 2 != 0)) {
+		if(pairs < 1 || pairs > 10 || (pairs % 2 == 0)) {
 			throw new IllegalArgumentException();
 		}
 		
