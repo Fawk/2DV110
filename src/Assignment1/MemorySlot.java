@@ -7,7 +7,6 @@ public class MemorySlot {
 	private boolean active = true;
 	
 	public MemorySlot(char c, int slot) {
-		// TODO Auto-generated constructor stub
 		value = c;
 	}
 

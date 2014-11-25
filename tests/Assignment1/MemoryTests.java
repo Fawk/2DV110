@@ -68,13 +68,9 @@ public class MemoryTests {
 	@Test
 	public void testSimplePlaythrough()
 	{
-		try {
-			Memory m = new Memory(5);
-			int result = m.TestGame();
-			System.out.println("Game completed in " + result + " tries!");
-		} catch (Exception e) {
-			
-		}
+		Memory m = new Memory(5);
+		int result = m.TestGame();
+		System.out.println("Game completed in " + result + " tries!");
 	}
 	
 	private boolean turnSlot(Memory m, int slot) {

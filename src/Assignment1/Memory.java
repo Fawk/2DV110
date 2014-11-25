@@ -21,7 +21,6 @@ public class Memory {
 	}
 
 	private char generateValue(int pairs) {
-		// TODO Auto-generated method stub
 		Random rand = new Random();
 		int n = rand.nextInt(pairs);
 		while(isTakenTwice(values[n])) {
@@ -31,7 +30,6 @@ public class Memory {
 	}
 
 	private boolean isTakenTwice(char c) {
-		// TODO Auto-generated method stub
 		int r = 0;
 		for(int i = 0; i < slots.length; i++) {
 			if(slots[i] == null) break;
@@ -50,7 +48,6 @@ public class Memory {
 	}
 
 	public void SetFakeOrder(char[] c) {
-		// TODO Auto-generated method stub
 		slots = new MemorySlot[c.length*2];
 		for(int i = 0; i < slots.length; i++) {
 			if(i >= (slots.length / 2)) {
@@ -62,8 +59,8 @@ public class Memory {
 	}
 
 	public boolean sameSlotValue(MemorySlot s1, MemorySlot s2) {
-		// TODO Auto-generated method stub
-		return (s1.getValue() == s2.getValue());
+		boolean result = s1.getValue() == s2.getValue();
+		return (result);
 	}
 
 	public MemorySlot getMemorySlot(int i) {
