@@ -3,6 +3,7 @@ package Assignment1;
 import org.junit.*;
 
 import Assignment1.Memory;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class MemoryTests {
@@ -21,8 +22,8 @@ public class MemoryTests {
 	public void testMemorySize() {
 		Memory m = new Memory(5);
 		
-		assert(m.getPairs() == 5);
-		assert(m.getSlots() == 10);
+		assertEquals(m.getPairs(), 5);
+		assertEquals(m.getSlots(), 10);
 	}
 	
 	@Test
